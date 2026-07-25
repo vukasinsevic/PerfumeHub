@@ -21,8 +21,9 @@
 - Brand
 - Notes
 - Gender
-- Perfume type
+- Concentration
 - Season
+- Main accords
 - Price
 
 #### Sort perfumes by:
