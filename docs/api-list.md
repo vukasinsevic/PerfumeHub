@@ -56,8 +56,8 @@ Detailed request and response specifications are documented in `api-specificatio
 
 ## 7. ORDERS
 
-- `POST /api/orders` - Creates a new order from the current cart.
 - `GET /api/orders` - Returns the authenticated user's orders.
+- `POST /api/orders` - Creates a new order from the current cart.
 - `GET /api/orders/{orderId}` - Returns detailed information about an order.
 
 ---
