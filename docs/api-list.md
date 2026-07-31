@@ -35,22 +35,22 @@ Detailed request and response specifications are documented in `api-specificatio
 
 ---
 
-## 5. COLLECTION
-
-- `GET /api/collection` - Returns the authenticated user's perfume collection.
-- `POST /api/collection/items` - Adds a perfume to the collection.
-- `PATCH /api/collection/items/{perfumeId}` - Updates the collection item status.
-- `DELETE /api/collection/items/{perfumeId}` - Removes a perfume from the collection.
-
----
-
-## 6. CART
+## 5. CART
 
 - `GET /api/cart` - Returns the authenticated user's shopping cart.
 - `POST /api/cart/items` - Adds a product variant to the cart.
 - `PATCH /api/cart/items/{cartItemId}` - Updates the quantity of a cart item.
 - `DELETE /api/cart/items/{cartItemId}` - Removes an item from the cart.
 - `DELETE /api/cart` - Clears the shopping cart.
+
+---
+
+## 6. COLLECTION
+
+- `GET /api/collection` - Returns the authenticated user's perfume collection.
+- `POST /api/collection/items` - Adds a perfume to the collection.
+- `PATCH /api/collection/items/{perfumeId}` - Updates the collection item status.
+- `DELETE /api/collection/items/{perfumeId}` - Removes a perfume from the collection.
 
 ---
 
