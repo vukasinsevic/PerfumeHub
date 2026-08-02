@@ -69,7 +69,7 @@ Creates a new user account.
 #### Possible errors
 
 - 400 Bad Request - Validation failed
-- 409 Conflict - Email already exists
+- 409 Conflict - Email or phone number already exists
 
 ## Login
 
@@ -474,15 +474,23 @@ Returns the authenticated user's wishlist.
 [
   {
     "id": 1,
-    "name": "Sauvage",
-    "brand": "Dior",
-    "imageUrl": "https://example.com/images/sauvage.jpg"
+    "addedAt": "2026-07-28T19:15:00",
+    "perfume": {
+      "id": 1,
+      "name": "Sauvage",
+      "brand": "Dior",
+      "imageUrl": "https://example.com/images/sauvage.jpg"
+    }
   },
   {
-    "id": 5,
-    "name": "Le Male Le Parfum",
-    "brand": "Jean Paul Gaultier",
-    "imageUrl": "https://example.com/images/le-male.jpg"
+    "id": 2,
+    "addedAt": "2026-07-30T09:45:00",
+    "perfume": {
+      "id": 5,
+      "name": "Le Male Le Parfum",
+      "brand": "Jean Paul Gaultier",
+      "imageUrl": "https://example.com/images/le-male.jpg"
+    }
   }
 ]
 ```
@@ -617,7 +625,7 @@ Returns the authenticated user's shopping cart.
 
 `POST /api/cart/items`
 
-Adds a product variant to the cart.
+Adds a product variant to the cart or increases its quantity if it is already present.
 
 **Access:** Authenticated user
 
@@ -632,7 +640,8 @@ Adds a product variant to the cart.
 
 #### Successful response
 
-**Status:** `201 Created`
+**Status:** `200 OK` -  The quantity of an existing cart item was increased.
+**Status:** `201 Created` - A new cart item was created.
 
 ```json
 {
@@ -962,7 +971,7 @@ Returns the authenticated user's orders.
 
 `POST /api/orders`
 
-Creates a new order from the current cart.
+Creates a new order from the authenticated user's current cart using the user's saved shipping address.
 
 **Access:** Authenticated user
 
@@ -1139,7 +1148,7 @@ Creates a new notification for a product.
   "type": "PRICE_DROP",
   "active": true,
   "createdAt": "2026-08-01T14:30:00",
-  "lastKnownPrice": 129.99,
+  "lastKnownPrice": 119.99,
   "productVariant": {
     "id": 3,
     "volumeMl": 100,
