@@ -173,9 +173,11 @@ The following operations should be transactional:
 
 - PerfumeMapper
 - ReviewMapper
-- WishlistMapper
-- CollectionMapper
+- WishlistItemMapper
+- CollectionItemMapper
+- CartItemMapper
 - CartMapper
+- OrderItemMapper
 - OrderMapper
 - ProductNotificationMapper
 - ProductVariantMapper
