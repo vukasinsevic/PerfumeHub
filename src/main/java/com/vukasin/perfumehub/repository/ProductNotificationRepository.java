@@ -17,6 +17,11 @@ public interface ProductNotificationRepository extends JpaRepository<ProductNoti
             NotificationType type
     );
 
+    Optional<ProductNotification> findByIdAndUserId(
+            Long productNotificationId,
+            Long userId
+    );
+
     boolean existsByUserIdAndProductVariantIdAndType(
             Long userId,
             Long productVariantId,

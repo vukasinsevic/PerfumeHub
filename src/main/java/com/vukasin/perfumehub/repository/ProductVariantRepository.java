@@ -10,4 +10,12 @@ public interface ProductVariantRepository extends JpaRepository<ProductVariant, 
     List<ProductVariant> findByPerfumeId(Long perfumeId);
 
     List<ProductVariant> findByPerfumeIdAndActiveTrue(Long perfumeId);
+
+    boolean existsByVolumeMlAndPerfumeId(Integer volumeMl, Long perfumeId);
+
+    boolean existsByVolumeMlAndPerfumeIdAndIdNot(
+            Integer volumeMl,
+            Long perfumeId,
+            Long id
+    );
 }
