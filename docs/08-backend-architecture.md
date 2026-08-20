@@ -187,14 +187,22 @@ The following operations should be transactional:
 
 ## Security
 
+### Security Components
+
+Custom security components:
+
 - SecurityConfig
+- CustomUserDetailsService
 - JwtService
 - JwtAuthenticationFilter
-- CustomUserDetailsService
-- CustomUserDetails
-- AuthenticationEntryPoint
-- AccessDeniedHandler
+- CustomAuthenticationEntryPoint
+- CustomAccessDeniedHandler
+
+Configured Spring Security components:
+
 - PasswordEncoder
+- AuthenticationManager
+- AuthenticationProvider
 
 ### Security Responsibilities
 
