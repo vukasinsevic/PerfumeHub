@@ -1,8 +1,7 @@
 package com.vukasin.perfumehub.mapper;
 
-import com.vukasin.perfumehub.dto.response.OrderDetailsResponse;
-import com.vukasin.perfumehub.dto.response.OrderItemResponse;
-import com.vukasin.perfumehub.dto.response.OrderSummaryResponse;
+import com.vukasin.perfumehub.dto.response.*;
+import com.vukasin.perfumehub.entity.AppUser;
 import com.vukasin.perfumehub.entity.CustomerOrder;
 import com.vukasin.perfumehub.entity.OrderItem;
 import org.springframework.stereotype.Component;
@@ -49,6 +48,36 @@ public class OrderMapper {
     ) {
         return orders.stream()
                 .map(this::toSummaryResponse)
+                .toList();
+    }
+
+    public AdminOrderSummaryResponse toAdminSummaryResponse(
+            CustomerOrder order
+    ) {
+
+        AppUser user = order.getUser();
+
+        OrderCustomerResponse customer =
+                new OrderCustomerResponse(
+                        user.getId(),
+                        user.getName(),
+                        user.getEmail()
+                );
+
+        return new AdminOrderSummaryResponse(
+                order.getId(),
+                order.getCreatedAt(),
+                order.getStatus(),
+                order.getTotalPrice(),
+                customer
+        );
+    }
+
+    public List<AdminOrderSummaryResponse> toAdminSummaryResponseList(
+            List<CustomerOrder> orders
+    ) {
+        return orders.stream()
+                .map(this::toAdminSummaryResponse)
                 .toList();
     }
 

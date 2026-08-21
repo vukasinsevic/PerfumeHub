@@ -1,6 +1,7 @@
 package com.vukasin.perfumehub.service;
 
 import com.vukasin.perfumehub.dto.request.UpdateOrderStatusRequest;
+import com.vukasin.perfumehub.dto.response.AdminOrderSummaryResponse;
 import com.vukasin.perfumehub.dto.response.OrderDetailsResponse;
 import com.vukasin.perfumehub.entity.CustomerOrder;
 import com.vukasin.perfumehub.entity.OrderItem;
@@ -54,6 +55,15 @@ public class AdminOrderService {
         List<OrderItem> orderItems = orderItemRepository.findByOrderId(orderId);
 
         return orderMapper.toDetailsResponse(savedOrder, orderItems);
+    }
+
+    @Transactional(readOnly = true)
+    public List<AdminOrderSummaryResponse> getOrders() {
+
+        List<CustomerOrder> orders =
+                orderRepository.findAllByOrderByCreatedAtDesc();
+
+        return orderMapper.toAdminSummaryResponseList(orders);
     }
 
     private void validateStatusTransition(

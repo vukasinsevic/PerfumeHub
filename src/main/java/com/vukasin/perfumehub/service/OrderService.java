@@ -53,7 +53,7 @@ public class OrderService {
     }
 
     @Transactional
-    public OrderDetailsResponse createOrder(Long userId, String shippingAddress) {
+    public OrderDetailsResponse createOrder(Long userId) {
 
         Cart cart = cartRepository.findByUserId(userId)
                 .orElseThrow(() ->
@@ -69,11 +69,20 @@ public class OrderService {
                 .orElseThrow(() ->
                         new ResourceNotFoundException("User not found"));
 
+        String shippingAddress = user.getAddress();
+
         BigDecimal totalPrice = BigDecimal.ZERO;
 
         for (CartItem cartItem: cartItems) {
 
             ProductVariant productVariant = cartItem.getProductVariant();
+
+            if (!productVariant.isActive()) {
+                throw new InvalidRequestException(
+                        productVariant.getPerfume().getName()
+                                + " is no longer available"
+                );
+            }
 
             if (cartItem.getQuantity() > productVariant.getStock()) {
                 throw new InsufficientStockException(

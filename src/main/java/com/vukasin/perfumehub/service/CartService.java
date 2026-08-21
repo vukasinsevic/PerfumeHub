@@ -153,4 +153,17 @@ public class CartService {
         cartItemRepository.delete(item);
     }
 
+    @Transactional
+    public void clearCart(Long userId) {
+
+        Cart cart = cartRepository.findByUserId(userId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Cart not found"));
+
+
+        List<CartItem> items = cartItemRepository.findByCartId(cart.getId());
+
+        cartItemRepository.deleteAll(items);
+    }
+
 }
